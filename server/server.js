@@ -1,11 +1,10 @@
 import express from 'express'
 import dotenv from 'dotenv'
 import cors from 'cors'
-import cookieParser from 'cookie-parser'
 import path from 'path'
 
 import dbConnect from "./services/mongoose.js";
-import router from "./routes/routes.js";
+import paymentRouter from "./routes/routes.js";
 
 dotenv.config()
 
@@ -15,10 +14,9 @@ const server = express()
 dbConnect()
 
 server.use(cors())
-server.use(cookieParser())
 server.use(express.json())
 
-server.use('/api', router)
+server.use('/api/payment', paymentRouter)
 
 if (process.env.NODE_ENV === 'production') {
     server.use(express.static('client/build'))
