@@ -77,6 +77,7 @@ export const Wrapper = styled.div`
     }
     &:disabled {
       background: #8a1922;
+      box-shadow: none;
     }
   }
   

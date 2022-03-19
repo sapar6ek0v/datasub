@@ -6,9 +6,14 @@ import Modal from 'react-modal';
 
 
 const Main = () => {
-    const {handleSubmit, register, reset} = useForm()
+    const {
+        register,
+        handleSubmit,
+        reset,
+        formState
+    } = useForm({ mode: "onChange" })
     const [res, setRes] = useState({})
-    const [modalIsOpen, setIsOpen] = useState(false);
+    const [modalIsOpen, setIsOpen] = useState(false)
 
 
     const handlePayment = (data) => {
@@ -77,7 +82,8 @@ const Main = () => {
                                 type="number" placeholder="Amount $" className="line_input"
                             />
                         </div>
-                        <button>PROCEED TO CHECKOUT</button>
+
+                        <button disabled={!formState.isDirty || !formState.isValid}>PROCEED TO CHECKOUT</button>
                     </form>
                 </div>
                 <Modal
